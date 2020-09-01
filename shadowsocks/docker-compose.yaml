@@ -1,0 +1,20 @@
+version: '2'
+
+services:
+  shadowsocks:
+    image: mritd/shadowsocks
+    restart: always
+    container_name: shadowsocks
+    command:
+     '-m "ss-server" -s "-s 0.0.0.0 -p 443 -m chacha20-ietf-poly1305 -k <password> --plugin v2ray-plugin --plugin-opts=server;path=/shadowsocks;host=<domain.name>"'
+    ports:
+     - 6443:443
+
+  caddy:
+    image: caddy
+    restart: always
+    volumes:
+     - ./caddy/Caddyfile:/etc/caddy/Caddyfile
+     - ./caddy/data:/data
+    ports:
+     - 443:443
