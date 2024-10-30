@@ -11,7 +11,7 @@ services:
      - 6443:443
 
   caddy:
-    image: caddy
+    image: xuzhenglun/caddy:cloudflare
     restart: always
     volumes:
      - ./caddy/Caddyfile:/etc/caddy/Caddyfile
