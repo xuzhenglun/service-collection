@@ -1,10 +1,20 @@
 <domain.name>
 {
+
+  # see https://github.com/caddy-dns/cloudflare?tab=readme-ov-file#configuration
+  tls {
+    dns cloudflare <cf-token>
+  }
+
   reverse_proxy /shadowsocks shadowsocks:443 {
     header_up Host {host}
     header_up X-Real-IP {remote_host}
     header_up X-Forwarded-For {remote_host}
     header_up X-Forwarded-Proto {scheme}
+  }
+
+  reverse_proxy /dns-query https://8.8.8.8 {
+    header_up Host 8.8.8.8
   }
 }
 
