@@ -1,0 +1,7 @@
+version: '2'
+services:
+  estkme-cloud:
+    image: docker.trli.cloudns.ch/damonto/estkme-cloud:latest
+    ports:
+     - 1888:1888
+
