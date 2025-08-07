@@ -6,7 +6,7 @@ services:
     restart: always
     container_name: shadowsocks
     command:
-     '-m "ss-server" -s "-s 0.0.0.0 -p 443 -m chacha20-ietf-poly1305 -k <password> --plugin v2ray-plugin --plugin-opts=server;path=/shadowsocks;host=<domain.name>"'
+     '-m "ss-server" -s "--fast-open -s 0.0.0.0 -p 443 -m chacha20-ietf-poly1305 -k <password> --plugin v2ray-plugin --plugin-opts=server;path=/shadowsocks;host=<domain.name>"'
 
   warp:
     build: ./warp
@@ -20,7 +20,7 @@ services:
     image: mritd/shadowsocks
     restart: always
     command:
-      '-m "ss-server" -s "-i CloudflareWARP -s 0.0.0.0 -p 443 -m chacha20-ietf-poly1305 -k <password> --plugin v2ray-plugin --plugin-opts=server;path=/shadowsocks/warp;host=<domain.name>"'
+      '-m "ss-server" -s "--fast-open -i CloudflareWARP -s 0.0.0.0 -p 443 -m chacha20-ietf-poly1305 -k <password> --plugin v2ray-plugin --plugin-opts=server;path=/shadowsocks/warp;host=<domain.name>"'
     container_name: shadowsocks-warp
     network_mode: service:warp
 
