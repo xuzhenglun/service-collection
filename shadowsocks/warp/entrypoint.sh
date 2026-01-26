@@ -18,6 +18,7 @@ sleep 3s # to wait warp start
 
 # configurate warp
 warp-cli --accept-tos status
+warp-cli --accept-tos registration delete
 warp-cli --accept-tos registration new
 warp-cli --accept-tos mode warp+doh
 warp-cli --accept-tos connect
