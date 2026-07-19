@@ -26,10 +26,18 @@ warp-cli --accept-tos status
 warp-cli --accept-tos stats
 
 # test it
+tried=0
 while true; do
-  if curl https://www.cloudflare.com/cdn-cgi/trace/ | grep warp=on; then
-	break
+  if [[ $tried -gt 300 ]];then
+        echo timeout
+        exit 1
   fi
+
+  if curl https://www.cloudflare.com/cdn-cgi/trace | grep warp=on; then
+        break
+  fi
+
+  tried=$(( $tried + 1 ))
   sleep 1s
 done
 
